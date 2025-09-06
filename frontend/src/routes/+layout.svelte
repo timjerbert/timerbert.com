@@ -1,7 +1,7 @@
 <script lang="js">
     import { goto } from '$app/navigation';
-    import navButtonPressed from "$lib/assets/navbar/navbar_pagebutton_pressed.png"
-    import navButtonUnpressed from "$lib/assets/navbar/navbar_pagebutton_unpressed.png"
+    import navButtonPressed from "$lib/assets/navbar/pressed3d.png"
+    import navButtonUnpressed from "$lib/assets/navbar/unpressed3d.png"
     let {children} = $props();
 
 
@@ -15,15 +15,15 @@
 
 <nav>
     <div class="navbar">
-        <button class="navbar-button" on:click={() => goto('/')}>
+        <button class="navbar-button" onclick={() => goto('/')}>
             <img class="pressed" src={navButtonPressed} alt="" />
             <img class="unpressed" src={navButtonUnpressed} alt="" />
         </button>
-        <button class="navbar-button" on:click={() => goto('/projects')}>
+        <button class="navbar-button" onclick={() => goto('/projects')}>
             <img class="pressed" src={navButtonPressed} alt="" />
             <img class="unpressed" src={navButtonUnpressed} alt="" />
         </button>
-        <button class="navbar-button" on:click={() => goto('/contact')}>
+        <button class="navbar-button" onclick={() => goto('/contact')}>
             <img class="pressed" src={navButtonPressed} alt="" />
             <img class="unpressed" src={navButtonUnpressed} alt="" />
         </button>
@@ -33,32 +33,24 @@
 
 {@render children()}
 
-<style>
+<style scoped>
     .navbar{
+      height:131px;
       width:100%;
       display:flex;
       height:fit-content;
-      padding: 10px;
-      background:rgb(214,211,200);
+      padding: 0px;
       display:flex;  
-    }
-
-    .navbar a{
-        background:pink;
+      background-image: url('../lib/assets/navbar/keyboardbg3d.png');
     }
 
     .navbar-button{
-        width:60px;
-        height:60px;
         padding:0px;
         margin:0px;
-        margin-right:10px;
         border:0px;
         background:none;
     }
     .navbar-button img{
-        width:60px;
-        height:60px;
     }
     .navbar-button .pressed{
         display:none;
