@@ -36,6 +36,7 @@
     .site-container{
         display:flex;
         flex-direction: column;
+        overflow-y:auto;
         width:100dvw;
         height:100dvh;
         background:rgb(255, 255, 255)
@@ -44,15 +45,16 @@
         display:block;
         width:100%;
         height:100%;
+        overflow-x:scroll;
     }
     .navbar{
       width:100%;
+      overflow-y:hidden;
       display:flex;
       height:fit-content;
       padding: 0;
       display:flex;  
       background:#313131;
-      overflow-y:auto;
     }
 
     .navbar-button{
