@@ -1,6 +1,6 @@
 
 <script lang="js" >
-
+    import { fade } from 'svelte/transition';
     
 	const imageModules = import.meta.glob(
 		'/src/static/carousel/images/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
@@ -36,16 +36,9 @@
     </div>
     <div class="dot-selector"></div>
     {#each Object.entries(imageModules) as [_path, module], index}
-        {#if carouselSelected == (index + 1) % carouselSize}
-            <img src={module.default} class="carousel-image transition-image" alt="Me looking dapper"/>    
-        {/if}
         {#if carouselSelected == index}
-            <img src={module.default} class="carousel-image" alt="Me looking dapper"/>    
+            <img src={module.default} class="carousel-image" alt="Me looking dapper" transition:fade={{ duration: 500 }}/>    
         {/if}
-        {#if carouselSelected == (index - 1) % carouselSize}
-            <img src={module.default} class="carousel-image transition-image" alt="Me looking dapper"/>    
-        {/if}
-
     {/each}    
 </div>
 
@@ -57,6 +50,7 @@
         align-items: center;
         background:paleturquoise;
         max-width:100% !important;
+        flex-grow:1;
         height:50rem;
         box-sizing: border-box;
         object-fit: cover;
@@ -65,11 +59,14 @@
 
     .c-button-container{
         display:flex;
-        backdrop-filter: blur(0.5rem);
-        background: rgba(189, 189, 189, 0.204);
+        background: rgb(35, 35, 35);
         padding:1rem;
         border-radius: 1rem;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
         z-index: 20;
+        top:0;
+        right:1rem;
         position:absolute;
     }
     .c-button{
@@ -86,7 +83,7 @@
         font-size:3rem;
     }
     .c-button:hover{
-        color:rgb(205, 214, 227);
+        color:rgb(143, 152, 164);
     }
 
 
@@ -98,12 +95,6 @@
         overflow:hidden;
         background-position: center;
         background-size: cover;
-        animation:fadeIn 1s linear;
-        opacity:100%;
-    }
-    .transition-image{
-        opacity: 0%;
-        animation:fadeIn 1s linear;
-
+        object-fit: cover;
     }
 </style>
