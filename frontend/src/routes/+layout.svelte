@@ -1,3 +1,6 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&family=Meera+Inimai&family=Rubik+Iso&display=swap" rel="stylesheet">
 <script lang="js">
     import { goto } from '$app/navigation';
     import { page } from '$app/state';
@@ -42,6 +45,7 @@
         background:rgb(255, 255, 255)
     }
     .page-container{
+        font-family: "Bahnschrift", sans-serif;
         display:block;
         width:100%;
         height:100%;
@@ -58,6 +62,7 @@
     }
 
     .navbar-button{
+        font-family: "Meera Inimai", sans-serif;
         font-size:x-large;
         border:0;
         color:white;
