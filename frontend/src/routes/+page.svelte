@@ -115,7 +115,7 @@
             </div>
         </div>
     </div>      
-    <div class="page-section">
+    <div class="page-section" id="contact">
         <div class="contact-section">
             <div class="contact-half" style="align-items: center;">
                 <div class="contact-title">
@@ -152,18 +152,17 @@
     }
     .about-title{
         font-size:3rem;
-        color:rgb(207, 84, 207);
-        margin:2rem;
+        color:rgb(255, 255, 255);
+        background:black;
+        margin:5%;
         margin-bottom:0;
         font-family: "Meera Inimai", sans-serif;
     }
     .about-text{
         font-size:1.5rem;
-        color:rgb(8, 76, 110);
-        margin:1rem;
-        padding:1rem;
-        padding-top:0;
-        margin-top:0;
+        color:rgb(0, 0, 0);
+        margin:5%;
+        margin-top:1rem;
     }
     .about-text p{
         font-family: "Meera Inimai", sans-serif;
@@ -260,7 +259,7 @@
     .socials-subtitle{
         width:fit-content;
         font-size:2.5rem;
-        color:rgb(207, 84, 207);
+        color:rgb(10, 100, 112);
     }
     .socials{
         flex-grow:1;
@@ -336,7 +335,7 @@
         justify-content: center;
     }
     .contact-title{
-        color:rgb(207, 84, 207);
+        color:rgb(0, 0, 0);
         background:white;
         font-family: "Rubik Iso", system-ui;
         font-size:3rem;
@@ -346,8 +345,9 @@
         box-shadow: 0.5rem 0.5rem rgb(207, 84, 207);
     }
     .contact-text{
+        font-family: "Meera Inimai", sans-serif;
         font-size:1.5rem;
-        color:rgb(8, 76, 110);
+        color:rgb(0, 0, 0);
         background:#DBE7EA;
         padding:1rem;
         margin:2rem;
@@ -362,15 +362,18 @@
         margin-bottom:3rem;
     }
     .contact-field{
+        font-family: "Meera Inimai", sans-serif;
         font-size:1.5rem;
         padding:0.5rem;
         resize: none;
         outline:none;
         background:#DBE7EA;
-        border:solid 1px rgb(108, 152, 173);
+        border:none;
+        border-radius: 0.2rem;
     }
     .contact-field:focus{
         background:white;
+        outline:rgb(41, 35, 161) 3px double;
     }
     .contact-fields{
         margin:2rem;

@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-netlify';
 import { enhancedImages } from '@sveltejs/enhanced-img';
 
 /** @type {import('@sveltejs/kit').Config} */

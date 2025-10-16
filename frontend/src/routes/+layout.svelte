@@ -26,7 +26,7 @@
             <button class="navbar-button" onclick={() => goto('/design')}>
                 Design
             </button>
-            <button class="navbar-button hflex-last" onclick={() => goto('/contact')}>
+            <button class="navbar-button hflex-last" onclick={() => goto('/#contact')}>
                 Contact
             </button>
         </nav>
