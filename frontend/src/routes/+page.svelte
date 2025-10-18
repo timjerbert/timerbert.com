@@ -46,18 +46,18 @@
 <div class="home-page">
     <div class="splash">
         <div style="width:0">
-            <div class="splash-title-container">
+            <!-- <div class="splash-title-container">
                 <div class="splash-titles">
                     <div class="splash-title">
                         {displayedText}<span class="cursor" class:blinking={isTyping} class:fading={isCompleted}>▮</span>
                     </div>
                     <div class="splash-subtitle">&ltdeveloper for software and web&gt</div>
                 </div>
-            </div>
+            </div> -->
         </div>
-        <div class="splash-left">
+        <!-- <div class="splash-left">
             <div class="scroller"></div>
-        </div>
+        </div> -->
         <div class="splash-right">
             <Carousel>
             </Carousel>
@@ -65,9 +65,9 @@
     </div>
     <div class="page-section">
         <div class="about-section">
-            <div class="about-title">
+            <h1 class="about-title">
                 About Me
-            </div>
+            </h1>
             <div class="about-text">
                 <p>I’m a creative software developer with a lifelong background in visual art, which gives me a strong eye for design and user experience. I enjoy combining that creativity with technical skill to build clean, efficient, and visually appealing solutions.</p>
                 <p>I have experience in full-stack development through projects like Magiquill, a web-based text adventure creation and sharing platform built with Vue, Express, and Node.js. My strengths include breaking down complex ideas into clear architectural structures, designing minimal and trend-conscious solutions, and creating lightweight, mobile-friendly components.</p>
@@ -78,7 +78,7 @@
     </div>
     <div class="page-section">
         <div class="socials-section">
-            <div style="display:flex; flex-wrap:wrap; background:white;">
+            <div style="display:flex; flex-wrap:wrap; background:white; position: relative; z-index: 2;">
                 <div class="socials-text">
                     <div class="socials-title">
                         Want to see what I'm up to?
@@ -146,7 +146,6 @@
         flex-direction: column;
         width:100%;
         background:#DBE7EA;
-        margin-bottom:2rem;
         padding-left:2rem;
         padding-right:2rem;
     }
@@ -173,14 +172,14 @@
     }
     .splash{
         display:flex;
-        height:50rem;
+        height:40rem;
         max-height:80dvh;
         background:hotpink;
         overflow:hidden;
 
     }
     .splash-left{
-        background:blue;
+        background:rgb(146, 146, 146);
         width:24rem;
     }
     .splash-right{
@@ -233,18 +232,35 @@
         width:100% !important;
     }
     .socials-section{
-        background-image: radial-gradient(circle at 4px 8px, rgb(186, 204, 217) 4px, transparent 0);
+        background-image: radial-gradient(circle at 8px 24px, rgb(186, 204, 217) 4px, transparent 0);
         background-size: 40px 40px;
         width:100% !important;
+        margin-top: 1rem;
         display:flex;
         flex-direction: row;
         flex-wrap:wrap;
         justify-content: center;
         align-content:stretch;
         font-family: "Meera Inimai", sans-serif;
+        position: relative;
     }
-    .socials-bg-gradient-l{
-        
+    .socials-section::before,
+    .socials-section::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100px;
+        z-index: 1;
+        pointer-events: none;
+    }
+    .socials-section::before {
+        left: 0;
+        background: linear-gradient(to right, rgb(255, 255, 255), transparent);
+    }
+    .socials-section::after {
+        right: 0;
+        background: linear-gradient(to left, rgb(255, 255, 255), transparent);
     }
     .socials-title{
         width:fit-content;
@@ -259,7 +275,7 @@
     .socials-subtitle{
         width:fit-content;
         font-size:2.5rem;
-        color:rgb(10, 100, 112);
+        color:rgb(207, 84, 207);
     }
     .socials{
         flex-grow:1;
@@ -391,10 +407,10 @@
         margin-top:0;
     }
     .submit-button{
-        background:rgb(16, 144, 161);
+        background:rgb(116, 205, 216);
         font-weight:800;
         font-size:1.5rem;
-        color:white;
+        color:black;
         padding:0.7rem;
         border-radius: 2rem;
         outline:none;

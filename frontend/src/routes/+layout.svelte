@@ -34,8 +34,7 @@
     </div>
 
 
-<style scoped>
-
+<style>
     .site-container{
         display:flex;
         flex-direction: column;
@@ -63,10 +62,10 @@
 
     .navbar-button{
         font-family: "Meera Inimai", sans-serif;
-        font-size:x-large;
+        font-size:1.5rem;
         border:0;
         color:white;
-        padding:16px;
+        padding:1rem;
         background:none;
     }
 
@@ -79,4 +78,5 @@
     .hflex-last{
         margin-left:auto;
     }
+
 </style>

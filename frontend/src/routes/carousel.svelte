@@ -1,45 +1,47 @@
 
 <script lang="js" >
+    import Carousel from 'svelte-carousel'
     import { fade } from 'svelte/transition';
-    
+    import { browser } from '$app/environment';
 	const imageModules = import.meta.glob(
 		'/src/static/carousel/images/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}',
 		{
 			eager: true,
 		}
 	)
-    let carouselSize = Object.keys(imageModules).length
-
-    let carouselSelected = $state(0);
+    // Convert imageModules to an array of image sources for svelte-carousel
+    let images = /** @type {string[]} */ ([])
+    Object.entries(imageModules).forEach(([path, module]) => {
+        // @ts-ignore - module type is handled by Vite's import.meta.glob
+        images.push(module.default)
+    })
     
     console.log(imageModules)
-    function incrementCarouselPosition(){
-        carouselSelected =  (carouselSelected + 1) % carouselSize
-        console.log(carouselSelected)
-    }
-    function decrementCarouselPosition(){
-        if (carouselSelected!=0) carouselSelected = (carouselSelected - 1) % carouselSize
-        else carouselSelected = carouselSize - 1
-        console.log(carouselSelected)
-
-    }
 </script>
 
 <div class="carousel-container">
-    <div class="c-button-container">
-        <button class="c-button" onclick={decrementCarouselPosition}>
-            <div style="transform:translate(-5px,-5px)">🢐</div>
-        </button>
-        <button class="c-button"  onclick={incrementCarouselPosition}>            
-            <div style="transform:translate(2px,-5px)">🢒</div>
-        </button>
-    </div>
-    <div class="dot-selector"></div>
-    {#each Object.entries(imageModules) as [_path, module], index}
-        {#if carouselSelected == index}
-            <img src={module.default} class="carousel-image" alt="Me looking dapper" transition:fade={{ duration: 500 }}/>    
+    <div class="carousel-inner">
+        {#if browser}
+            <Carousel
+                let:loaded
+                autoplay={true}
+                autoplayDuration={3000}
+            >
+                {#each images as src, imageIndex (src)}
+                    <div class="img-container">
+                        {#if loaded.includes(imageIndex)}
+                            <img src={src} alt="Carousel" class="carousel-image" />
+                        {/if}
+                    </div>
+                {/each}
+            </Carousel>
+        {:else}
+            <!-- Fallback for SSR -->
+            <div class="img-container">
+                <img src={images[0]} alt="Carousel" class="carousel-image" />
+            </div>
         {/if}
-    {/each}    
+    </div>
 </div>
 
 <style scoped>
@@ -48,53 +50,44 @@
         position:relative;
         justify-content: center;
         align-items: center;
-        background:paleturquoise;
-        max-width:100% !important;
+        background:rgb(0, 0, 0);
+        width: 100%;
+        min-height: fit-content;
+        height:100%;
         flex-grow:1;
-        height:50rem;
-        box-sizing: border-box;
-        object-fit: cover;
-        overflow:hidden;
     }
 
-    .c-button-container{
-        display:flex;
-        background: rgb(35, 35, 35);
-        padding:1rem;
-        border-radius: 1rem;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        z-index: 20;
-        top:0;
-        right:1rem;
-        position:absolute;
+    .carousel-inner {
+        width: 40rem;
+        height: 100%;
+        max-width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    .c-button{
-        right:0px;
-        width:20px;
-        margin:0;
-        height:20px;
-        background:none;
-        outline:none;
-        border:none;
-        text-align: center;
-        color:white;
-        line-height: 0px;
-        font-size:3rem;
-    }
-    .c-button:hover{
-        color:rgb(143, 152, 164);
+
+    .img-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow:hidden;
     }
 
 
     .carousel-image{
-        position: absolute;
-        min-width:100%;
-        min-height:100%;
-        flex-shrink: 0;
         overflow:hidden;
-        background-position: center;
-        background-size: cover;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
+        display: block;
+        user-select: none;
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        -moz-user-drag: none;
+        -o-user-drag: none;
+        user-drag: none;
+        pointer-events: none;
     }
 </style>
