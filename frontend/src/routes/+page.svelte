@@ -117,23 +117,33 @@
     </div>      
     <div class="page-section" id="contact">
         <div class="contact-section">
-            <div class="contact-half" style="align-items: center;">
+            <div class="contact-form-container">
                 <div class="contact-title">
                     Reach Out To Me
                 </div>
-                <div class="contact-text">
-                    If you would like to inquire about my services, or would to just plain say hi, just shoot me a message! I`d like to hear from you.
-                </div>
-                <img class="contact-mail-img" src={envelope} alt="envelope stock icon">
-            </div>
-            <div class="contact-half" style="background:rgb(109, 162, 176);">
-                <div class="contact-fields">
-                    <textarea class="contact-field" rows="1" placeholder="Name"></textarea>
-                    <textarea class="contact-field" rows="1" placeholder="E-mail"></textarea>
-                    <textarea class="contact-field" rows="4" placeholder="Message" style="flex-grow:1;"></textarea>
-                </div>
-                <div class="submit-container">
-                    <button class="submit-button">Submit</button>
+                <div class="contact-content">
+                    <div class="contact-text">
+                        If you would like to inquire about my services, or would to just plain say hi, just shoot me a message! I'd like to hear from you.
+                        <hr style="border:dashed white 1px;">
+                        This is the means by which I am best accessed, and I usually respond within 1-3 days.
+                    </div>
+                    <div class="contact-form">
+                        <div class="field-group">
+                            <div class="field-label">Name</div>
+                            <textarea class="contact-field" rows="1" placeholder="Name"></textarea>
+                        </div>
+                        <div class="field-group">
+                            <div class="field-label">Email</div>
+                            <textarea class="contact-field" rows="1" placeholder="Email Address"></textarea>
+                        </div>
+                        <div class="field-group">
+                            <div class="field-label">Message</div>
+                            <textarea class="contact-field" rows="4" placeholder="Message"></textarea>
+                        </div>
+                        <div class="submit-container">
+                            <button class="submit-button">Send Message</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -146,22 +156,21 @@
         flex-direction: column;
         width:100%;
         background:#DBE7EA;
-        padding-left:2rem;
-        padding-right:2rem;
+        padding:3dvw 5dvw;
+        margin: 0 5dvw;
+
     }
     .about-title{
         font-size:3rem;
         color:rgb(255, 255, 255);
+        margin-top: 0;
         background:black;
-        margin:5%;
-        margin-bottom:0;
         font-family: "Meera Inimai", sans-serif;
     }
     .about-text{
         font-size:1.5rem;
+        line-height: 1.6;
         color:rgb(0, 0, 0);
-        margin:5%;
-        margin-top:1rem;
     }
     .about-text p{
         font-family: "Meera Inimai", sans-serif;
@@ -169,6 +178,7 @@
     .home-page{
         display: flex;
         flex-direction: column;
+        gap:2rem;
     }
     .splash{
         display:flex;
@@ -235,7 +245,6 @@
         background-image: radial-gradient(circle at 8px 24px, rgb(186, 204, 217) 4px, transparent 0);
         background-size: 40px 40px;
         width:100% !important;
-        margin-top: 1rem;
         display:flex;
         flex-direction: row;
         flex-wrap:wrap;
@@ -338,37 +347,55 @@
     }
     .contact-section{
         margin-top:1rem;
-        background: rgb(126, 183, 197);
+        background: linear-gradient(135deg, rgb(0, 0, 0) 0%, rgb(109, 162, 176) 100%);
         display:flex;
+        flex-direction: column;
         width:100% !important;
-        flex-wrap: wrap;
+        padding: 2rem;
+        align-items: end;
+        position: relative;
+        overflow: hidden;
     }
-    .contact-half{
-        width:min-content;
-        flex-grow:1;
-        display:flex;
-        flex-direction:column;
-        justify-content: center;
+    .contact-form-container {
+        background: rgba(158, 244, 29, 0.95);
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        z-index: 2;
+        position: relative;
+        align-items: stretch;
+        max-width: 900px;
+        width: 100%;
+    }
+    .contact-content {
+        display: flex;
+        gap: 2rem;
+        align-items: stretch;
+    }
+    .contact-text {
+        font-family: "Meera Inimai", sans-serif;
+        font-size: 1.1rem;
+        background:black;
+        color: rgb(255, 255, 255);
+        line-height: 1.6;
+        width:15rem;
+        padding:1rem;
+    }
+    .contact-form {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
     }
     .contact-title{
-        color:rgb(0, 0, 0);
-        background:white;
-        font-family: "Rubik Iso", system-ui;
-        font-size:3rem;
-        margin:2rem;
-        padding:0.5rem;
+        font-family: "BBH Sans Bartle", sans-serif;
+        font-size:2.5rem;
+        margin:0 0 1rem 0;
         width: max-content;
-        box-shadow: 0.5rem 0.5rem rgb(207, 84, 207);
-    }
-    .contact-text{
-        font-family: "Meera Inimai", sans-serif;
-        font-size:1.5rem;
-        color:rgb(0, 0, 0);
-        background:#DBE7EA;
-        padding:1rem;
-        margin:2rem;
-        margin-top:1rem;
-        max-width:35rem;
+        color: rgb(0, 0, 0);
+        background:white;
     }
     .contact-mail-img{
         max-width: 30%;
@@ -379,51 +406,50 @@
     }
     .contact-field{
         font-family: "Meera Inimai", sans-serif;
-        font-size:1.5rem;
-        padding:0.5rem;
+        font-size:1rem;
+        padding:1rem;
         resize: none;
         outline:none;
-        background:#DBE7EA;
-        border:none;
-        border-radius: 0.2rem;
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid rgba(50, 0, 104, 0.2);
+        border-radius: 1rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
     .contact-field:focus{
-        background:white;
-        outline:rgb(41, 35, 161) 3px double;
+        background: white;
+        border-color: rgb(50, 0, 104);
     }
-    .contact-fields{
-        margin:2rem;
-        display:flex;
+    .field-group{
+        display: flex;
         flex-direction: column;
-        row-gap:1rem;
-        flex-grow:1;
-        margin-bottom:1rem;
+        gap: 0.5rem;
+    }
+    .field-label{
+        font-family: "Meera Inimai", sans-serif;
+        font-size: 0.9rem;
+        color: rgb(50, 0, 104);
+        font-weight: 500;
+        margin-left: 0.2rem;
     }
     .submit-container{
         display:flex;
-        justify-content: end;
-        width:auto;
-        margin:2rem;
-        margin-top:0;
+        justify-content: center;
+        margin-top: 1rem;
     }
     .submit-button{
-        background:rgb(116, 205, 216);
+        background: linear-gradient(135deg, rgb(0, 0, 0) 0%, rgb(40, 40, 40) 100%);
         font-weight:800;
-        font-size:1.5rem;
-        color:black;
-        padding:0.7rem;
+        font-size:1.2rem;
+        color:rgb(255, 255, 255);
+        padding:1rem 2.5rem;
         border-radius: 2rem;
         outline:none;
         border:none;
         font-family: "Meera Inimai", sans-serif;
-
-    }
-    .submit-button:hover{
-        background:rgb(21, 132, 147);
-
-    }
-    .submit-button:active{
-        background:rgb(10, 100, 112);
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(50, 0, 104, 0.3);
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 
     /* Hide splash-left on small screens, let carousel take full width */
@@ -434,6 +460,40 @@
         .splash-right {
             flex: 1;
             width: 100%;
+        }
+    }
+
+    /* Contact section responsive behavior */
+    
+    @media (max-width: 768px) {
+        .contact-section {
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+        .contact-form{
+            width:100%;
+            padding:1rem;
+            box-sizing: border-box;
+        }
+        .contact-text{
+            width:fit-content;
+            margin:1rem;
+        }
+        .contact-title{
+            margin:1rem;
+            font-size:2rem;
+        }
+        .contact-content {
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .contact-form-container {
+            width: 100%;
+            padding:1rem;
+            border-radius:0;
+            box-sizing: border-box;
+
         }
     }
 </style>
