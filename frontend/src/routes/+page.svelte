@@ -36,6 +36,42 @@
         }
     }
 
+
+    let status = $state("");
+    /** @param {Event} data */
+    async function handleSubmit(data){
+    status = 'Submitting...'
+    const formData = new FormData(data.currentTarget)
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+            },
+            body: json
+        });
+        
+        const result = await response.json();
+        console.log('Response:', result)
+        
+        if (result.success) {
+            status = result.message || "Success"
+            // Clear the form
+            data.currentTarget.reset();
+        } else {
+            status = result.message || "Failed to send message. Please try again."
+        }
+        
+    } catch (error) {
+        console.error('Fetch error:', error);
+        status = "Network error. Please check your connection and try again."
+    }
+    }
+
     onMount(() => {
         // Start typing effect when component mounts
         setTimeout(typeText, 500); // Small delay before starting
@@ -127,23 +163,25 @@
                         <hr style="border:dashed white 1px;">
                         This is the means by which I am best accessed, and I usually respond within 1-3 days.
                     </div>
-                    <div class="contact-form">
+                    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" on:submit|preventDefault={handleSubmit}>
+                        <input type="hidden" name="access_key" value="204b70f0-de58-4977-ba07-fab8e5abaf1c">
                         <div class="field-group">
                             <div class="field-label">Name</div>
-                            <textarea class="contact-field" rows="1" placeholder="Name"></textarea>
+                            <input class="contact-field" placeholder="Name" type="text" name="name" required>
                         </div>
                         <div class="field-group">
                             <div class="field-label">Email</div>
-                            <textarea class="contact-field" rows="1" placeholder="Email Address"></textarea>
+                            <input class="contact-field" placeholder="Email Address" type="email" name="email" required>
                         </div>
                         <div class="field-group">
                             <div class="field-label">Message</div>
-                            <textarea class="contact-field" rows="4" placeholder="Message"></textarea>
+                            <textarea class="contact-field" rows="4" placeholder="Message" name="message" required></textarea>
                         </div>
+                        <div class="status-message">{status}</div>
                         <div class="submit-container">
-                            <button class="submit-button">Send Message</button>
+                            <button class="submit-button" type="submit">Send Message</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -151,6 +189,10 @@
 </div>
 
 <style scoped>
+    .status-message{
+        background:white;
+        color:#1C00D2;
+    }
     .about-section{
         display:flex;
         flex-direction: column;
@@ -355,19 +397,23 @@
         align-items: end;
         position: relative;
         overflow: hidden;
+        will-change: auto;
+        contain: layout style;
+        transform: translateZ(0);
     }
     .contact-form-container {
-        background: rgba(158, 244, 29, 0.95);
+        background: rgba(158, 244, 29, 0.98);
         border-radius: 1rem;
         padding: 2rem;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.2);
         z-index: 2;
         position: relative;
         align-items: stretch;
         max-width: 900px;
         width: 100%;
+        will-change: auto;
+        transform: translateZ(0);
     }
     .contact-content {
         display: flex;
@@ -414,6 +460,8 @@
         border: 2px solid rgba(50, 0, 104, 0.2);
         border-radius: 1rem;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        will-change: auto;
+        transform: translateZ(0);
     }
     .contact-field:focus{
         background: white;
