@@ -5,6 +5,7 @@
     import githublogo_hover from "../static/icons/githublogo_hover.gif"
     import linkedin_hover from "../static/icons/linkedin_hover.gif"
     import envelope from "../static/icons/envelope.png"
+    import sendmailicon from "../static/icons/sendmailicon.png"
 
     let socialsHoverMode = $state(true);
     
@@ -45,30 +46,25 @@
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
 
-    try {
-        const response = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
-            body: json
-        });
-        
-        const result = await response.json();
-        console.log('Response:', result)
-        
-        if (result.success) {
-            status = result.message || "Success"
-            // Clear the form
-            data.currentTarget.reset();
-        } else {
-            status = result.message || "Failed to send message. Please try again."
-        }
-        
-    } catch (error) {
-        console.error('Fetch error:', error);
-        status = "Network error. Please check your connection and try again."
+    const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
+        body: json
+    });
+    
+    console.log('Response status:', response.status, response.statusText);
+    
+    let result;
+    result = await response.json();
+    console.log('Response data:', result);
+
+    if (result.success) {
+        status = result.message || "Success"
+    } else {
+        status = result.message || "Failed to send message. Please try again."
     }
     }
 
@@ -154,6 +150,7 @@
     <div class="page-section" id="contact">
         <div class="contact-section">
             <div class="contact-form-container">
+                <img src={envelope} alt="" class="envelope-bg">
                 <div class="contact-title">
                     Reach Out To Me
                 </div>
@@ -165,21 +162,23 @@
                     </div>
                     <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" on:submit|preventDefault={handleSubmit}>
                         <input type="hidden" name="access_key" value="204b70f0-de58-4977-ba07-fab8e5abaf1c">
-                        <div class="field-group">
-                            <div class="field-label">Name</div>
-                            <input class="contact-field" placeholder="Name" type="text" name="name" required>
+                        <div style="margin:1rem;">
+                            <div class="field-group">
+                                <div class="field-label">Name</div>
+                                <input class="contact-field" placeholder="" type="text" name="name" required>
+                            </div>
+                            <div class="field-group">
+                                <div class="field-label">Email</div>
+                                <input class="contact-field" placeholder="example@mail.com" type="email" name="email" required>
+                            </div>
+                            <div class="field-group">
+                                <div class="field-label">Message</div>
+                                <textarea class="contact-field" rows="4" placeholder="Hello, I just wanted to contact you about..." name="message" required></textarea>
+                            </div>
+                            <div class="status-message">{status}</div>
                         </div>
-                        <div class="field-group">
-                            <div class="field-label">Email</div>
-                            <input class="contact-field" placeholder="Email Address" type="email" name="email" required>
-                        </div>
-                        <div class="field-group">
-                            <div class="field-label">Message</div>
-                            <textarea class="contact-field" rows="4" placeholder="Message" name="message" required></textarea>
-                        </div>
-                        <div class="status-message">{status}</div>
                         <div class="submit-container">
-                            <button class="submit-button" type="submit">Send Message</button>
+                            <button class="submit-button" type="submit">Send Message <img src={sendmailicon} alt="" class="sendmail-icon"></button>
                         </div>
                     </form>
                 </div>
@@ -190,8 +189,7 @@
 
 <style scoped>
     .status-message{
-        background:white;
-        color:#1C00D2;
+        color:#bd00f6;
     }
     .about-section{
         display:flex;
@@ -399,12 +397,11 @@
         overflow: hidden;
         will-change: auto;
         contain: layout style;
-        transform: translateZ(0);
+
     }
     .contact-form-container {
         background: rgba(158, 244, 29, 0.98);
-        border-radius: 1rem;
-        padding: 2rem;
+        padding: 0;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         border: 1px solid rgba(255, 255, 255, 0.2);
         z-index: 2;
@@ -413,12 +410,27 @@
         max-width: 900px;
         width: 100%;
         will-change: auto;
-        transform: translateZ(0);
+
+        overflow: hidden;
+    }
+    .envelope-bg {
+        position: absolute;
+        top: 50%;
+        right: 2rem;
+        transform: translateY(-50%) translateX(20%);
+        width: 500px;
+        height: 500px;
+        object-fit: contain;
+        opacity: 0.6;
+        filter:sepia(10%) hue-rotate(120deg) saturate(100%) brightness(1.1);
+        z-index:0;
+        pointer-events: none;
     }
     .contact-content {
         display: flex;
-        gap: 2rem;
         align-items: stretch;
+        position: relative;
+        z-index: 1;
     }
     .contact-text {
         font-family: "Meera Inimai", sans-serif;
@@ -433,15 +445,17 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1rem;
     }
     .contact-title{
         font-family: "BBH Sans Bartle", sans-serif;
         font-size:2.5rem;
-        margin:0 0 1rem 0;
-        width: max-content;
+        margin:0;
+        width: 100%;
         color: rgb(0, 0, 0);
         background:white;
+        position: relative;
+        z-index: 1;
     }
     .contact-mail-img{
         max-width: 30%;
@@ -453,12 +467,12 @@
     .contact-field{
         font-family: "Meera Inimai", sans-serif;
         font-size:1rem;
-        padding:1rem;
+        padding:0.5rem;
         resize: none;
         outline:none;
         background: rgba(255, 255, 255, 0.9);
-        border: 2px solid rgba(50, 0, 104, 0.2);
-        border-radius: 1rem;
+        border: 1px solid rgba(25, 0, 82, 0.586);
+        border-radius: 0.5rem;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         will-change: auto;
         transform: translateZ(0);
@@ -469,8 +483,8 @@
     }
     .field-group{
         display: flex;
+        margin-bottom:0.8rem;
         flex-direction: column;
-        gap: 0.5rem;
     }
     .field-label{
         font-family: "Meera Inimai", sans-serif;
@@ -481,16 +495,15 @@
     }
     .submit-container{
         display:flex;
-        justify-content: center;
-        margin-top: 1rem;
+        justify-content: right;
     }
     .submit-button{
-        background: linear-gradient(135deg, rgb(0, 0, 0) 0%, rgb(40, 40, 40) 100%);
+        background:black;
         font-weight:800;
         font-size:1.2rem;
         color:rgb(255, 255, 255);
-        padding:1rem 2.5rem;
-        border-radius: 2rem;
+        padding:1rem 1rem;
+        border-radius: 0;
         outline:none;
         border:none;
         font-family: "Meera Inimai", sans-serif;
@@ -498,8 +511,26 @@
         box-shadow: 0 4px 15px rgba(50, 0, 104, 0.3);
         text-transform: uppercase;
         letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
     }
-
+    .submit-button:hover{
+        background:rgb(16, 16, 16);
+    }
+    .submit-button:active{
+        background:rgb(36, 36, 36);
+    }
+    .sendmail-icon {
+        height: 1.25rem;
+        width: auto;
+        object-fit: contain;
+        vertical-align: middle;
+        filter:saturate(0) brightness(1.3);
+    }
+     .submit-button:hover .sendmail-icon{
+        filter:saturate(0) brightness(1.5);
+    }
     /* Hide splash-left on small screens, let carousel take full width */
     @media (max-width: 768px) {
         .splash-left {
@@ -517,19 +548,20 @@
         .contact-section {
             padding: 0;
             box-sizing: border-box;
-
+            border:none;
         }
         .contact-form{
-            width:100%;
+            width:90%;
             padding:1rem;
             box-sizing: border-box;
         }
+        .contact-form-container{
+            border:none;
+        }
         .contact-text{
             width:fit-content;
-            margin:1rem;
         }
         .contact-title{
-            margin:1rem;
             font-size:2rem;
         }
         .contact-content {
@@ -538,7 +570,7 @@
         }
         .contact-form-container {
             width: 100%;
-            padding:1rem;
+            padding:1;
             border-radius:0;
             box-sizing: border-box;
 
