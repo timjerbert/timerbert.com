@@ -103,7 +103,6 @@
         align-items: center;
         background:rgb(0, 0, 0);
         width: 100%;
-        min-height: fit-content;
         height:100%;
         flex-grow:1;
     }
@@ -111,6 +110,8 @@
     .carousel-inner {
         width: 60rem;
         height: 100%;
+        box-sizing: border-box;
+
         max-width: 100%;
         display: flex;
         align-items: center;
@@ -118,9 +119,8 @@
     }
 
     .img-container {
+        box-sizing: border-box;
         width: 100%;
-        height: 100%;
-        min-height: 400px;
         display: flex;
         align-items: center;
         justify-content: center;

@@ -4,8 +4,30 @@
 <script lang="js">
     import { goto } from '$app/navigation';
     import { page } from '$app/state';
+    import { onMount } from 'svelte';
     let {children} = $props();
 
+    // Typing effect variables
+    let displayedText = $state('');
+    let fullText = 'Timothy Erbert';
+    let typingIndex = $state(0);
+    let isTyping = $state(true);
+    let isCompleted = $state(false);
+
+    // Typing effect function
+    function typeText() {
+        if (typingIndex < fullText.length) {
+            displayedText += fullText[typingIndex];
+            typingIndex++;
+            setTimeout(typeText, 50); // Adjust speed here (100ms per character)
+        } else {
+            isTyping = false;
+            // Start fade effect after a short delay
+            setTimeout(() => {
+                isCompleted = true;
+            }, 0); // Wait 1 second before starting fade
+        }
+    }
 
     let m = null
     // function navButtonHover(event) {
@@ -13,10 +35,21 @@
 	// 	m = {x:event.clientX-r.left, y:event.clientY-r.top}
     // }
 
+    onMount(() => {
+        // Start typing effect when component mounts
+        setTimeout(typeText, 500); // Small delay before starting
+    });
+
 </script>
 
     <div class="site-container">
         <nav class="navbar">
+            <div class="navbar-title-section">
+                <div class="navbar-title">
+                    {displayedText}<span class="cursor" class:blinking={isTyping} class:fading={isCompleted}>▮</span>
+                </div>
+                <div class="navbar-subtitle">&ltdeveloper for software and web&gt</div>
+            </div>
             <button class="navbar-button" onclick={() => goto('/')}>
                 Home
             </button>
@@ -41,23 +74,58 @@
         overflow-y:auto;
         width:100dvw;
         height:100dvh;
-        background:rgb(255, 255, 255)
+        background:rgb(0, 0, 0);
+        color:white;
     }
     .page-container{
         font-family: "Bahnschrift", sans-serif;
         display:block;
         width:100%;
         height:100%;
-        overflow-x:scroll;
     }
     .navbar{
       width:100%;
-      overflow-y:hidden;
       display:flex;
       height:fit-content;
       padding: 0;
       display:flex;  
-      background:#313131;
+      background:#000000;
+      align-items: center;
+    }
+
+    .navbar-title-section{
+        font-family: "Meera Inimai", sans-serif;
+        color:white;
+        padding: 1.6rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .navbar-title{
+        font-size:3rem;
+    }
+
+    .navbar-subtitle{
+        font-size:1.5rem;
+    }
+
+    .cursor {
+        color: white;
+        font-weight: normal;
+    }
+    .blinking {
+        animation: blink 1s infinite;
+    }
+    .fading {
+        animation: fadeOut 0.1s ease-in-out forwards;
+    }
+    @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+    }
+    @keyframes fadeOut {
+        0% { opacity: 1; }
+        100% { opacity: 0; }
     }
 
     .navbar-button{

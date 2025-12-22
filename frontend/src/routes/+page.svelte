@@ -1,5 +1,5 @@
 <script lang="js">
-    import { tick, onMount } from 'svelte';
+    import { tick } from 'svelte';
     import Carousel from "./carousel.svelte";
     import githublogo from "../static/icons/githublogo.gif"
     import githublogo_hover from "../static/icons/githublogo_hover.gif"
@@ -8,13 +8,6 @@
     import sendmailicon from "../static/icons/sendmailicon.png"
 
     let socialsHoverMode = $state(true);
-    
-    // Typing effect variables
-    let displayedText = $state('');
-    let fullText = 'Timothy Erbert';
-    let typingIndex = $state(0);
-    let isTyping = $state(true);
-    let isCompleted = $state(false);
 
     async function resetSocialsGifs (){
         socialsHoverMode = false;
@@ -22,27 +15,17 @@
         socialsHoverMode = true
     }
 
-    // Typing effect function
-    function typeText() {
-        if (typingIndex < fullText.length) {
-            displayedText += fullText[typingIndex];
-            typingIndex++;
-            setTimeout(typeText, 50); // Adjust speed here (100ms per character)
-        } else {
-            isTyping = false;
-            // Start fade effect after a short delay
-            setTimeout(() => {
-                isCompleted = true;
-            }, 0); // Wait 1 second before starting fade
-        }
-    }
-
 
     let status = $state("");
     /** @param {Event} data */
     async function handleSubmit(data){
     status = 'Submitting...'
-    const formData = new FormData(data.currentTarget)
+    const form = data.currentTarget;
+    if (!(form instanceof HTMLFormElement)) {
+        status = 'Error: Form not found';
+        return;
+    }
+    const formData = new FormData(form)
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
 
@@ -68,50 +51,32 @@
     }
     }
 
-    onMount(() => {
-        // Start typing effect when component mounts
-        setTimeout(typeText, 500); // Small delay before starting
-    });
-
 </script>
 
 <div class="home-page">
     <div class="splash">
-        <div style="width:0">
-            <!-- <div class="splash-title-container">
-                <div class="splash-titles">
-                    <div class="splash-title">
-                        {displayedText}<span class="cursor" class:blinking={isTyping} class:fading={isCompleted}>▮</span>
-                    </div>
-                    <div class="splash-subtitle">&ltdeveloper for software and web&gt</div>
+        <div class="splash-left">
+            <div class="about-section">
+                <h1 class="about-title">
+                    About Me
+                </h1>
+                <div class="about-text">
+                    <p>I’m a creative software developer with a lifelong background in visual art, which gives me a strong eye for design and user experience. I enjoy combining that creativity with technical skill to build clean, efficient, and visually appealing solutions.</p>
+                    <p>I have experience in full-stack development through projects like <a href="/projects/magiquill" style="color:aqua">Magiquill</a>, a web-based text adventure creation and sharing platform built with Vue, Express, and Node.js. My strengths include breaking down complex ideas into clear architectural structures, designing minimal and trend-conscious solutions, and creating lightweight, mobile-friendly components.</p>
+                    <p>On the technical side, I’m proficient in C++, C, Python, Java, and JavaScript, with a strong foundation in data structures and software design principles. I value clear communication, thoughtful design, and building tools that are both functional and intuitive.</p>
                 </div>
-            </div> -->
+            </div>
         </div>
-        <!-- <div class="splash-left">
-            <div class="scroller"></div>
-        </div> -->
         <div class="splash-right">
             <Carousel>
             </Carousel>
         </div>
     </div>
-    <div class="page-section">
-        <div class="about-section">
-            <h1 class="about-title">
-                About Me
-            </h1>
-            <div class="about-text">
-                <p>I’m a creative software developer with a lifelong background in visual art, which gives me a strong eye for design and user experience. I enjoy combining that creativity with technical skill to build clean, efficient, and visually appealing solutions.</p>
-                <p>I have experience in full-stack development through projects like Magiquill, a web-based text adventure creation and sharing platform built with Vue, Express, and Node.js. My strengths include breaking down complex ideas into clear architectural structures, designing minimal and trend-conscious solutions, and creating lightweight, mobile-friendly components.</p>
-                <p>On the technical side, I’m proficient in C++, C, Python, Java, and JavaScript, with a strong foundation in data structures and software design principles. I value clear communication, thoughtful design, and building tools that are both functional and intuitive.</p>
 
-            </div>
-        </div>
-    </div>
     <div class="page-section">
         <div class="socials-section">
-            <div style="display:flex; flex-wrap:wrap; background:white; position: relative; z-index: 2;">
-                <div class="socials-text">
+            <div style="display:flex; flex-wrap:wrap; position: relative; z-index: 2;">
+                <!-- <div class="socials-text">
                     <div class="socials-title">
                         Want to see what I'm up to?
                     </div>
@@ -119,10 +84,13 @@
                         Check out my LinkedIn or Github!
                     </div>
                     
-                </div>
+                </div> -->
                 <div class="socials">
                     <div class="socials-button-container" >
                         <a class="socials-button" href="https://github.com/timjerbert" on:mouseenter={resetSocialsGifs}>
+
+                            <div style="padding:1rem;         box-sizing: border-box;
+">
                             <div style="width=6rem;height=6rem;">
                                 <img src={githublogo} class="unhidden" alt="github icon handdrawn">
                                 <!-- {#if socialsHoverMode} -->
@@ -130,10 +98,18 @@
                                 <!-- {/if} -->
                             </div>
                             <div>github</div>
+                            </div>
+                            <div class="socials-gradient">
+                            </div>
+                            <div class="socials-gradient2">
+                            </div>
                         </a>
                     </div>
                     <div class="socials-button-container" >
                         <a class="socials-button" href="https://www.linkedin.com/in/tim-erbert-278969366/" on:mouseenter={resetSocialsGifs}>
+
+                            <div style="padding:1rem;         box-sizing: border-box;
+">
                             <div style="width=6rem;height=6rem;">
                                 <img src={linkedin_hover} class="unhidden" alt="linkedin icon handdrawn">
                                 <!-- {#if socialsHoverMode} -->
@@ -141,6 +117,11 @@
                                 <!-- {/if} -->
                             </div>
                             <div>LinkedIn</div>
+                            </div>
+                            <div class="socials-gradient">
+                            </div>
+                            <div class="socials-gradient2">
+                            </div>
                         </a>
                     </div>
                 </div>
@@ -192,89 +173,60 @@
         color:#bd00f6;
     }
     .about-section{
+        margin:2px 1rem;
+        box-sizing: border-box;
         display:flex;
         flex-direction: column;
-        width:100%;
-        background:#DBE7EA;
-        padding:3dvw 5dvw;
-        margin: 0 5dvw;
+        outline: dotted 2px rgb(255, 255, 255);
 
     }
     .about-title{
-        font-size:3rem;
+        box-sizing: border-box;
+        font-size:1rem;
+        width:100%;
+        border-bottom:dotted 2px rgb(255, 255, 255);
         color:rgb(255, 255, 255);
-        margin-top: 0;
-        background:black;
+        margin: 0;
+        padding:0.5rem;
         font-family: "Meera Inimai", sans-serif;
     }
     .about-text{
-        font-size:1.5rem;
-        line-height: 1.6;
-        color:rgb(0, 0, 0);
+        font-size:1.1rem;
+        line-height: 1.6rem;
+        color:rgb(255, 255, 255);
     }
     .about-text p{
         font-family: "Meera Inimai", sans-serif;
+        margin: 1rem;
+    }
+    .about-text a{
+        color:rgb(255, 255, 255);
+        text-decoration: underline;
+        text-decoration-color: rgba(255, 255, 255, 0.5);
+        transition: text-decoration-color 0.2s ease;
+    }
+    .about-text a:hover{
+        text-decoration-color: rgb(255, 255, 255);
     }
     .home-page{
         display: flex;
         flex-direction: column;
-        gap:2rem;
     }
     .splash{
         display:flex;
-        height:40rem;
-        max-height:80dvh;
-        background:hotpink;
+        height:fit-content;
+        background:black;
         overflow:hidden;
 
     }
     .splash-left{
-        background:rgb(146, 146, 146);
-        width:24rem;
+        display:flex;
+        width:30rem;
     }
     .splash-right{
         background:green;
         flex: 1;
         overflow: hidden;
-    }
-    .splash-title-container{
-        font-family: "Meera Inimai", sans-serif;
-        position:relative;
-        color:white;
-        background:black;
-        margin-top:4rem;
-        width:max-content;
-        z-index:1;
-    }
-    .splash-titles{
-        position:relative;
-        right:-3rem;
-        padding:1.6rem;
-        background:black;
-    }
-    .splash-subtitle{
-        font-size:2rem;
-    }
-    .splash-title{
-        font-size:4rem;
-    }
-    .cursor {
-        color: white;
-        font-weight: normal;
-    }
-    .blinking {
-        animation: blink 1s infinite;
-    }
-    .fading {
-        animation: fadeOut 0.5s ease-in-out forwards;
-    }
-    @keyframes blink {
-        0%, 50% { opacity: 1; }
-        51%, 100% { opacity: 0; }
-    }
-    @keyframes fadeOut {
-        0% { opacity: 1; }
-        100% { opacity: 0; }
     }
     .page-section{
         display:flex;
@@ -282,18 +234,20 @@
         width:100% !important;
     }
     .socials-section{
-        background-image: radial-gradient(circle at 8px 24px, rgb(186, 204, 217) 4px, transparent 0);
         background-size: 40px 40px;
+        box-sizing: border-box;
         width:100% !important;
         display:flex;
         flex-direction: row;
         flex-wrap:wrap;
         justify-content: center;
         align-content:stretch;
-        font-family: "Meera Inimai", sans-serif;
+        /* font-family: "Meera Inimai", sans-serif; */
         position: relative;
-    }
-    .socials-section::before,
+    }  
+    
+    /* background-image: radial-gradient(circle at 8px 24px, rgb(88, 98, 105) 2px, transparent 0); */
+    /* .socials-section::before,
     .socials-section::after {
         content: '';
         position: absolute;
@@ -305,17 +259,44 @@
     }
     .socials-section::before {
         left: 0;
-        background: linear-gradient(to right, rgb(255, 255, 255), transparent);
+        background: linear-gradient(to right, rgb(0, 0, 0), transparent);
     }
     .socials-section::after {
         right: 0;
-        background: linear-gradient(to left, rgb(255, 255, 255), transparent);
-    }
+        background: linear-gradient(to left, rgb(0, 0, 0), transparent);
+    } */
     .socials-title{
         width:fit-content;
         font-size:3.5rem;
-        color:black;
+        color:rgb(255, 255, 255);
         margin-bottom:1rem;
+    }
+    .socials-gradient{
+        background: radial-gradient(at center bottom, rgba(72, 87, 85, 0.697), #00000000);
+        z-index:-1;
+        height:100%;
+        width:100%;
+        border-bottom: rgba(43, 64, 64, 0.227) solid 2px;
+        position:absolute;
+        border-radius: 0.5rem;
+        opacity: 1;
+        transition: opacity 200ms ease-in-out;
+    }
+    .socials-button:hover .socials-gradient{
+        opacity: 0;
+    }
+    .socials-gradient2{
+        background: linear-gradient(0deg,rgba(0, 0, 0, 0),rgba(182, 221, 223, 0.135)) ;
+        z-index:-1;
+        height:15%;
+        width:100%;
+        position:absolute;
+        border-radius: 0.5rem;
+        opacity: 1;
+        transition: opacity 200ms ease-in-out;
+    }
+    .socials-button:hover .socials-gradient2{
+        opacity: 0;
     }
     .socials-text{
         display:flex; justify-content:center; flex-direction:column; align-items:center; flex-grow:2;
@@ -332,7 +313,7 @@
         border-radius: 1rem;
         display:flex;
         justify-content: center;
-        column-gap: 1rem;
+        column-gap: 2rem;
         flex-direction: row;
         margin:1rem;
     }
@@ -341,36 +322,40 @@
         height:fit-content;
         overflow: hidden;
         margin-bottom:1rem;
-        border-radius: 1.1rem;
+        border-radius: 0.55rem;
     }
     .socials-button{
-        transition: transform 330ms ease-in-out, background-color 300ms;
-        padding:1rem;
+        transition: transform 200ms ease-in-out, background-color 300ms;
         margin-top: 1rem;
         display:flex;
         flex-direction: column;
-        box-shadow: 0 1rem rgb(126, 183, 197);
-        border-radius: 1rem;
+        box-shadow: 0 1rem rgb(33, 43, 47);
+        border-radius: 0.5rem;
+        background-color: rgba(0, 0, 0, 0);
+        transform: translate(0, -0.6rem);
         text-decoration: none;
+        z-index:1;
     }
     .socials-button img{
         width:8rem;
         height:8rem;
     }
     .socials-button div{
-        font-family: "Meera Inimai", sans-serif;
         font-size:1.5rem;
-        color:#1C00D2;
+        color:transparent;
         width:100% !important;
         text-decoration: none;
+        text-shadow: 0 0 1.5px rgb(255, 255, 255);
         text-align: center;
+        z-index:3;
+
     }
     .socials-button:hover div{
         text-decoration: underline;
     }
     .socials-button:hover{
-        transform: translate(0, -1rem);
-        background-color: #dfeded;
+        transform: translate(0, 0);
+        background-color: rgb(0, 0, 0);
         cursor: pointer;
     }
     .hidden{
@@ -387,7 +372,7 @@
     }
     .contact-section{
         margin-top:1rem;
-        background: linear-gradient(135deg, rgb(0, 0, 0) 0%, rgb(109, 162, 176) 100%);
+        /* background: linear-gradient(135deg, rgb(0, 0, 0) 0%, rgb(109, 162, 176) 100%); */
         display:flex;
         flex-direction: column;
         width:100% !important;
@@ -533,18 +518,20 @@
     }
     /* Hide splash-left on small screens, let carousel take full width */
     @media (max-width: 768px) {
-        .splash-left {
-            display: none;
-        }
-        .splash-right {
-            flex: 1;
-            width: 100%;
+        .splash{
+            flex-direction: column-reverse;
         }
     }
 
     /* Contact section responsive behavior */
     
     @media (max-width: 768px) {
+        .about-section{
+            width:100% !important;
+        }
+        .splash-left{
+            width:100%;
+        }
         .contact-section {
             padding: 0;
             box-sizing: border-box;
@@ -560,6 +547,7 @@
         }
         .contact-text{
             width:fit-content;
+            
         }
         .contact-title{
             font-size:2rem;
@@ -570,7 +558,6 @@
         }
         .contact-form-container {
             width: 100%;
-            padding:1;
             border-radius:0;
             box-sizing: border-box;
 
