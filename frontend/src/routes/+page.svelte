@@ -1,19 +1,8 @@
 <script lang="js">
-    import { tick } from 'svelte';
     import Carousel from "./carousel.svelte";
-    import githublogo from "../static/icons/githublogo.gif"
-    import githublogo_hover from "../static/icons/githublogo_hover.gif"
-    import linkedin_hover from "../static/icons/linkedin_hover.gif"
+    import githubcat3dsmall from "../static/icons/githubcat3dsmall.png"
     import envelope from "../static/icons/envelope.png"
     import sendmailicon from "../static/icons/sendmailicon.png"
-
-    let socialsHoverMode = $state(true);
-
-    async function resetSocialsGifs (){
-        socialsHoverMode = false;
-        await tick()
-        socialsHoverMode = true
-    }
 
 
     let status = $state("");
@@ -87,17 +76,14 @@
                 </div> -->
                 <div class="socials">
                     <div class="socials-button-container" >
-                        <a class="socials-button" href="https://github.com/timjerbert" on:mouseenter={resetSocialsGifs}>
-
+                        <img src={githubcat3dsmall} alt="github icon handdrawn" class="socials-image">
+                        <div class="socials-text-label">github</div>
+                        <div class="socials-light-clip">
+                            <div class="socials-light-source"></div>
+                        </div>
+                        <a class="socials-button" href="https://github.com/timjerbert" aria-label="github">
                             <div style="padding:1rem;         box-sizing: border-box;
 ">
-                            <div style="width=6rem;height=6rem;">
-                                <img src={githublogo} class="unhidden" alt="github icon handdrawn">
-                                <!-- {#if socialsHoverMode} -->
-                                    <img src={githublogo_hover} class="hidden" alt="github icon handdrawn">
-                                <!-- {/if} -->
-                            </div>
-                            <div>github</div>
                             </div>
                             <div class="socials-gradient">
                             </div>
@@ -106,17 +92,14 @@
                         </a>
                     </div>
                     <div class="socials-button-container" >
-                        <a class="socials-button" href="https://www.linkedin.com/in/tim-erbert-278969366/" on:mouseenter={resetSocialsGifs}>
-
+                        <img src={githubcat3dsmall} alt="linkedin icon handdrawn" class="socials-image">
+                        <div class="socials-text-label">LinkedIn</div>
+                        <div class="socials-light-clip">
+                            <div class="socials-light-source"></div>
+                        </div>
+                        <a class="socials-button" href="https://www.linkedin.com/in/tim-erbert-278969366/" aria-label="LinkedIn">
                             <div style="padding:1rem;         box-sizing: border-box;
 ">
-                            <div style="width=6rem;height=6rem;">
-                                <img src={linkedin_hover} class="unhidden" alt="linkedin icon handdrawn">
-                                <!-- {#if socialsHoverMode} -->
-                                    <img src={linkedin_hover} class="hidden" alt="linkedin icon handdrawn">
-                                <!-- {/if} -->
-                            </div>
-                            <div>LinkedIn</div>
                             </div>
                             <div class="socials-gradient">
                             </div>
@@ -272,11 +255,10 @@
         margin-bottom:1rem;
     }
     .socials-gradient{
-        background: radial-gradient(at center bottom, rgba(72, 87, 85, 0.697), #00000000);
+        background: radial-gradient(at center bottom, rgba(44, 72, 69, 0.697), #00000000);
         z-index:-1;
         height:100%;
         width:100%;
-        border-bottom: rgba(43, 64, 64, 0.227) solid 2px;
         position:absolute;
         border-radius: 0.5rem;
         opacity: 1;
@@ -291,11 +273,45 @@
         height:15%;
         width:100%;
         position:absolute;
+        top: 0;
         border-radius: 0.5rem;
         opacity: 1;
         transition: opacity 200ms ease-in-out;
     }
     .socials-button:hover .socials-gradient2{
+        opacity: 0;
+    }
+    .socials-light-clip{
+        position: absolute;
+        top: 1rem;
+        left: 0;
+        width: 12.5rem;
+        height: 14.5rem;
+        overflow: hidden;
+        border-radius: 0.5rem;
+        transform: translate(0, -0.6rem);
+        transition: transform 200ms ease-in-out;
+        z-index: 5;
+        pointer-events: none;
+    }
+    .socials-button-container:hover .socials-light-clip{
+        transform: translate(0, 0);
+    }
+    .socials-light-source{
+        position: absolute;
+        top: 0%;
+        left: 30%;
+        transform: translateX(-40%);
+        width: 6rem;
+        height: 6rem;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(197, 186, 255, 0.4) 40%, transparent 70%);
+        border-radius: 50%;
+        filter: blur(1rem);
+        opacity: 0.8;
+        transition: transform 200ms ease-in-out, opacity 200ms ease-in-out;
+    }
+    .socials-button-container:hover .socials-light-source{
+        transform: translateX(-40%) translateY(-100%);
         opacity: 0;
     }
     .socials-text{
@@ -323,52 +339,67 @@
         overflow: hidden;
         margin-bottom:1rem;
         border-radius: 0.55rem;
+        position: relative;
+    }
+    .socials-image{
+        position: absolute;
+        top: 5%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: 12.5rem;
+        height: 12.5rem;
+        filter: blur(2px) saturate(0.5) hue-rotate(-9deg) brightness(0.85) contrast(0.9);
+        transition: filter 200ms ease-in-out, transform 200ms ease-in-out;
+        pointer-events: none;
+        z-index: 4;
+    }
+    .socials-button-container:hover .socials-image{
+        filter: blur(0) saturate(1) hue-rotate(0deg) brightness(1) contrast(1);
+        transform: translate(-50%, 0.05rem);
     }
     .socials-button{
         transition: transform 200ms ease-in-out, background-color 300ms;
         margin-top: 1rem;
         display:flex;
         flex-direction: column;
-        box-shadow: 0 1rem rgb(33, 43, 47);
+        justify-content: flex-end;
+        box-shadow: 0 1rem rgb(22, 37, 39);
         border-radius: 0.5rem;
         background-color: rgba(0, 0, 0, 0);
         transform: translate(0, -0.6rem);
         text-decoration: none;
-        z-index:1;
+        z-index: 3;
+        width: 12.5rem;
+        position: relative;
+        height: 13rem;
+        overflow: hidden;
     }
-    .socials-button img{
-        width:8rem;
-        height:8rem;
-    }
-    .socials-button div{
-        font-size:1.5rem;
+    .socials-text-label{
+        position: absolute;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%) translateY(-0.6rem);
+        font-size:2rem;
         color:transparent;
-        width:100% !important;
+        width: 12.5rem;
         text-decoration: none;
         text-shadow: 0 0 1.5px rgb(255, 255, 255);
         text-align: center;
-        z-index:3;
-
+        z-index: 10;
+        pointer-events: none;
+        transition: transform 200ms ease-in-out;
     }
-    .socials-button:hover div{
+    .socials-button-container:hover .socials-text-label{
+        transform: translateX(-50%) translateY(0);
+        text-decoration: underline;
+    }
+    .socials-button-container:hover .socials-text-label{
         text-decoration: underline;
     }
     .socials-button:hover{
         transform: translate(0, 0);
         background-color: rgb(0, 0, 0);
         cursor: pointer;
-    }
-    .hidden{
-        display:none;
-    }
-    .unhidden{
-        display:block;
-    }
-    .socials-button:hover .hidden{
-        display:block;
-    }
-    .socials-button:hover .unhidden{
-        display:none;
     }
     .contact-section{
         margin-top:1rem;
