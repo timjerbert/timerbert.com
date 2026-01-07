@@ -1,6 +1,7 @@
 <script lang="js">
     import Carousel from "./carousel.svelte";
     import githubcat3dsmall from "../static/icons/githubcat3dsmall.png"
+    import linkedin3d from "../static/icons/linkedin3d.png"
     import envelope from "../static/icons/envelope.png"
     import sendmailicon from "../static/icons/sendmailicon.png"
 
@@ -92,7 +93,7 @@
                         </a>
                     </div>
                     <div class="socials-button-container" >
-                        <img src={githubcat3dsmall} alt="linkedin icon handdrawn" class="socials-image">
+                        <img src={linkedin3d} alt="linkedin icon handdrawn" class="socials-image">
                         <div class="socials-text-label">LinkedIn</div>
                         <div class="socials-light-clip">
                             <div class="socials-light-source"></div>
@@ -255,7 +256,7 @@
         margin-bottom:1rem;
     }
     .socials-gradient{
-        background: radial-gradient(at center bottom, rgba(44, 72, 69, 0.697), #00000000);
+        background: radial-gradient(at center bottom, rgba(40, 61, 59, 0.697), #00000000);
         z-index:-1;
         height:100%;
         width:100%;
@@ -268,7 +269,7 @@
         opacity: 0;
     }
     .socials-gradient2{
-        background: linear-gradient(0deg,rgba(0, 0, 0, 0),rgba(182, 221, 223, 0.135)) ;
+        background: linear-gradient(0deg,rgba(0, 0, 0, 0),rgba(228, 255, 212, 0.135)) ;
         z-index:-1;
         height:15%;
         width:100%;
@@ -338,17 +339,17 @@
         height:fit-content;
         overflow: hidden;
         margin-bottom:1rem;
-        border-radius: 0.55rem;
+        border-radius: 1.55rem;
         position: relative;
     }
     .socials-image{
         position: absolute;
-        top: 5%;
+        top: 12%;
         left: 50%;
         transform: translate(-50%, 0);
-        width: 12.5rem;
-        height: 12.5rem;
-        filter: blur(2px) saturate(0.5) hue-rotate(-9deg) brightness(0.85) contrast(0.9);
+        width: 9.375rem;
+        height: 9.375rem;
+        filter: blur(3px) saturate(0.5) hue-rotate(-9deg) brightness(0.85) contrast(0.9);
         transition: filter 200ms ease-in-out, transform 200ms ease-in-out;
         pointer-events: none;
         z-index: 4;
@@ -363,11 +364,12 @@
         display:flex;
         flex-direction: column;
         justify-content: flex-end;
-        box-shadow: 0 1rem rgb(22, 37, 39);
-        border-radius: 0.5rem;
+        box-shadow: 0 1rem rgb(13, 21, 22);
+        border-radius: 1.5rem;
         background-color: rgba(0, 0, 0, 0);
         transform: translate(0, -0.6rem);
         text-decoration: none;
+        background-color: rgb(14, 14, 13);
         z-index: 3;
         width: 12.5rem;
         position: relative;
@@ -380,10 +382,10 @@
         left: 50%;
         transform: translateX(-50%) translateY(-0.6rem);
         font-size:2rem;
-        color:transparent;
         width: 12.5rem;
+        color:transparent;
         text-decoration: none;
-        text-shadow: 0 0 1.5px rgb(255, 255, 255);
+        text-shadow: 0 0 1px rgb(255, 255, 255);
         text-align: center;
         z-index: 10;
         pointer-events: none;
