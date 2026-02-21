@@ -44,20 +44,14 @@
 
     <div class="site-container">
         <nav class="navbar">
-            <div class="navbar-title-section">
                 <div class="navbar-title">
                     {displayedText}<span class="cursor" class:blinking={isTyping} class:fading={isCompleted}>▮</span>
                 </div>
-                <div class="navbar-subtitle">&ltdeveloper for software and web&gt</div>
-            </div>
             <button class="navbar-button" onclick={() => goto('/')}>
                 Home
             </button>
             <button class="navbar-button" onclick={() => goto('/projects')}>
                 Projects
-            </button>
-            <button class="navbar-button" onclick={() => goto('/design')}>
-                Design
             </button>
             <button class="navbar-button hflex-last" onclick={() => goto('/#contact')}>
                 Contact
@@ -74,14 +68,16 @@
         overflow-y:auto;
         width:100dvw;
         height:100dvh;
-        background:rgb(0, 0, 0);
         color:white;
+        background:black;
     }
     .page-container{
         font-family: "Bahnschrift", sans-serif;
-        display:block;
+        display:flex;
+        flex-direction: column;
+        flex: 1;
         width:100%;
-        height:100%;
+        min-height: 0;
     }
     .navbar{
       width:100%;
@@ -89,12 +85,11 @@
       height:fit-content;
       padding: 0;
       display:flex;  
-      background:#000000;
       align-items: center;
+      background:#101212;
     }
 
     .navbar-title-section{
-        font-family: "Meera Inimai", sans-serif;
         color:white;
         padding: 1.6rem;
         display: flex;
@@ -102,7 +97,10 @@
     }
 
     .navbar-title{
-        font-size:3rem;
+        font-family: "Meera Inimai", sans-serif;
+        padding:1rem;
+        width:20rem;
+        font-size:2.5rem;
     }
 
     .navbar-subtitle{

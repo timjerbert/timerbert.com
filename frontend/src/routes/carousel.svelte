@@ -168,4 +168,17 @@
             transform: rotate(360deg);
         }
     }
+
+    /* Hide carousel dots/pagination indicators */
+    :global(.carousel-container .carousel-dots),
+    :global(.carousel-container .carousel-pagination),
+    :global(.carousel-container [class*="dot"]),
+    :global(.carousel-container [class*="pagination"]),
+    :global(.carousel-container ul),
+    :global(.carousel-container [role="tablist"]),
+    :global(.carousel-container button[class*="dot"]),
+    :global(.carousel-container button[class*="indicator"]),
+    :global(.carousel-container [class*="indicator"]) {
+        display: none !important;
+    }
 </style>
