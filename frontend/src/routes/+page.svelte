@@ -49,9 +49,6 @@
 <div class="home-page">
     <div class="left-panel">
         <div class="about-section">
-            <h1 class="about-title">
-                About Me
-            </h1>
             <div class="about-text">
                 <p>I'm a creative software developer with a lifelong background in visual art, which gives me a strong eye for design and user experience. I enjoy combining that creativity with technical skill to build clean, efficient, and visually appealing solutions.</p>
                 <p>I have experience in full-stack development through projects like <a href="/projects/magiquill" style="color:aqua">Magiquill</a>, a web-based text adventure creation and sharing platform built with Vue, Express, and Node.js. My strengths include breaking down complex ideas into clear architectural structures, designing minimal and trend-conscious solutions, and creating lightweight, mobile-friendly components.</p>
@@ -69,7 +66,7 @@
             <h1 class="industrial-title">About Me</h1>
             <div class="industrial-container">
                 <p>I'm a creative software developer with a lifelong background in visual art, which gives me a strong eye for design and user experience. I enjoy combining that creativity with technical skill to build clean, efficient, and visually appealing solutions.</p>
-                <p>I have experience in full-stack development through projects like <a href="/projects/magiquill" style="color:aqua">Magiquill</a>, a web-based text adventure creation and sharing platform built with Vue, Express, and Node.js. My strengths include breaking down complex ideas into clear architectural structures, designing minimal and trend-conscious solutions, and creating lightweight, mobile-friendly components.</p>
+                <p>I have experience in full-stack development through projects like <a href="/projects/magiquill" style="color:aqua">MagiQuill</a>, a web-based text adventure creation and sharing platform built with Vue, Express, and Node.js. My strengths include breaking down complex ideas into clear architectural structures, designing minimal and trend-conscious solutions, and creating lightweight, mobile-friendly components.</p>
                 <p>On the technical side, I'm proficient in C++, C, Python, Java, and JavaScript, with a strong foundation in data structures and software design principles. I value clear communication, thoughtful design, and building tools that are both functional and intuitive.</p>
             </div>
         </div>
@@ -108,6 +105,13 @@
                     </div>
                     <p class="card-content">I attended HowdyHack back in 2021. In the span of 24 hours, me and my team of 3 others created a bot, which we dubbed BeeBot, for the platform discord which scraped from Texas A&M's public data to pair students together if they were taking similar classes.</p>
                 </div>
+                <div class="industrial-card">
+                    <div class="card-header">
+                        <h3 class="card-company">MagiQuill</h3>
+                        <time class="card-time">August 2024 - Today</time>
+                    </div>
+                    <p class="card-content">I attended HowdyHack back in 2021. In the span of 24 hours, me and my team of 3 others created a bot, which we dubbed BeeBot, for the platform discord which scraped from Texas A&M's public data to pair students together if they were taking similar classes.</p>
+                </div>
             </div>
         </div>
         <div class="page-section industrial-section">
@@ -126,22 +130,6 @@
                         </div>
                     </div>
                     <div class="tech-category">
-                        <h2 class="tech-category-title">Web Development</h2>
-                        <h3 class="tech-subcategory-title">Frontend</h3>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Vue.js</span>
-                            <span class="tech-tag">Svelte</span>
-                            <span class="tech-tag">React</span>
-                        </div>
-                        <h3 class="tech-subcategory-title">Backend</h3>
-                        <div class="tech-tags">
-                            <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">GCP</span>
-                            <span class="tech-tag">AWS</span>
-                            <span class="tech-tag">AWS Lambda</span>
-                        </div>
-                    </div>
-                    <div class="tech-category">
                         <h2 class="tech-category-title">Data Visualization</h2>
                         <div class="tech-tags">
                             <span class="tech-tag">Rstudio</span>
@@ -152,10 +140,38 @@
                         </div>
                     </div>
                     <div class="tech-category">
-                        <h2 class="tech-category-title">Design</h2>
+                        <h2 class="tech-category-title">Web Development</h2>
+                        <h3 class="tech-subcategory-title">Frontend</h3>
                         <div class="tech-tags">
-                            <span class="tech-tag">Affinity</span>
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Svelte</span>
+                            <span class="tech-tag">React</span>
                         </div>
+                        
+                        <h3 class="tech-subcategory-title">Database & Cloud</h3>
+                        <div class="tech-tags">
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Google Cloud Platform</span>
+                            <span class="tech-tag">AWS</span>
+                            <span class="tech-tag">AWS Lambda Functions</span>
+                        </div>
+                    </div>
+                    <div class="tech-category">
+                        <h2 class="tech-category-title">Design</h2>
+                            <h3 class="tech-subcategory-title">3D & CAD</h3>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Blender</span>
+                                <span class="tech-tag">Rhino3d</span>
+                                <span class="tech-tag">Plasticity</span>
+                            </div>                            
+                            <h3 class="tech-subcategory-title">Adobe Creative Suite</h3>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Photoshop</span>
+                                <span class="tech-tag">Illustrator</span>
+                                <span class="tech-tag">Premiere</span>
+                                <span class="tech-tag">Animate</span>
+
+                            </div>
                     </div>
                 </div>
             </div>
@@ -254,7 +270,7 @@
     }
     .about-text p{
         font-family: "Meera Inimai", sans-serif;
-        margin: 1rem;
+        margin: 2rem;
     }
     .about-text a{
         color:rgb(255, 255, 255);
@@ -334,8 +350,8 @@
         font-size: 2.5rem;
         margin: 0;
         width: 100%;
-        color: rgb(0, 0, 0);
-        background: white;
+        background: rgb(22, 0, 67);
+        color: rgb(221, 240, 216);
         position: relative;
         z-index: 2;
         padding: 0.25rem 1rem;
@@ -482,10 +498,11 @@
         font-family: "Meera Inimai", sans-serif;
         font-size: 1rem;
         font-weight: 500;
-        color: #b0b0b0;
+        color: #2a2a2a;
+        width: fit-content;
+        background:rgb(183, 189, 183);
         margin: 1.25rem 0 0.75rem 0;
-        padding-bottom: 0.25rem;
-        border-bottom: 1px solid #333333;
+        padding: 0.25rem;
     }
     .tech-subcategory-title:first-of-type {
         margin-top: 0;
@@ -493,7 +510,7 @@
     .tech-tags {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.5rem;
+        gap: 0;
     }
     .tech-tag {
         font-family: "Meera Inimai", sans-serif;
@@ -617,7 +634,6 @@
         display:flex;
         flex-direction: column;
         width:100% !important;
-        padding: 2rem;
         position: relative;
         overflow: hidden;
         will-change: auto;
@@ -628,13 +644,15 @@
         padding: 0;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         border: 1px solid rgba(255, 255, 255, 0.2);
+        border-right:0;
+        border-bottom:0;
         z-index: 2;
         position: relative;
         align-items: stretch;
         max-width: 900px;
         width: 100%;
         will-change: auto;
-
+        margin-left: auto;
         overflow: hidden;
     }
     .envelope-bg {

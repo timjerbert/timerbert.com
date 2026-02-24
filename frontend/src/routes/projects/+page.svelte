@@ -1,12 +1,13 @@
 <script>
     import { goto } from '$app/navigation';
+    import mqthumbnail from '../../lib/assets/projects/mqthumbnail.png';
     
     const projects = [
         {
             id: 'magiquill',
             title: 'Magiquill',
             description: 'A web-based text adventure creation and sharing platform built with Vue, Express, and Node.js. Features a node-based editor for creating interactive stories with modular game logic.',
-            image: null // Placeholder for future image
+            image: mqthumbnail
         }
     ];
 </script>
