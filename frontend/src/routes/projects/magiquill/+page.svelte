@@ -81,7 +81,7 @@
         line-height: 1.85rem;
         color: rgb(0, 0, 0);
         max-width: 900px;
-        background-color: rgb(185, 223, 151);
+        background-color: rgb(216, 234, 201);
         margin: 0 auto;
     }
     .project-content p {
@@ -101,7 +101,7 @@
         align-items: baseline;
 
         width: 100%;
-        background: rgb(0, 67, 23);
+        background: rgb(0, 43, 4);
         padding: 0.25rem 1rem;
         box-sizing: border-box;
         margin-bottom: 2rem;

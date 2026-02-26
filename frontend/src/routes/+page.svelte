@@ -110,7 +110,7 @@
                         <h3 class="card-company">MagiQuill</h3>
                         <time class="card-time">August 2024 - Today</time>
                     </div>
-                    <p class="card-content">I attended HowdyHack back in 2021. In the span of 24 hours, me and my team of 3 others created a bot, which we dubbed BeeBot, for the platform discord which scraped from Texas A&M's public data to pair students together if they were taking similar classes.</p>
+                    <p class="card-content">MagiQuill was created as my teams Senior Capstone project during our last 2 semesters at the University of North Texas. It is a platform dedicated to the creation and sharing of text adventure games and visual novels. If you are interested in reading more, please check out the projects page!</p>
                 </div>
             </div>
         </div>
@@ -121,6 +121,7 @@
                 <div class="tech-grid">
                     <div class="tech-category">
                         <h2 class="tech-category-title">Languages</h2>
+                        <h3 class="tech-subcategory-title">General</h3>
                         <div class="tech-tags">
                             <span class="tech-tag">C++</span>
                             <span class="tech-tag">Java</span>
@@ -128,6 +129,11 @@
                             <span class="tech-tag">Javascript</span>
                             <span class="tech-tag">C#</span>
                         </div>
+                        <h3 class="tech-subcategory-title">Low Level</h3>
+                        <div class="tech-tags">                        
+                            <span class="tech-tag">Arm Assembly</span>
+                        </div>
+
                     </div>
                     <div class="tech-category">
                         <h2 class="tech-category-title">Data Visualization</h2>
@@ -153,7 +159,9 @@
                             <span class="tech-tag">MongoDB</span>
                             <span class="tech-tag">Google Cloud Platform</span>
                             <span class="tech-tag">AWS</span>
-                            <span class="tech-tag">AWS Lambda Functions</span>
+                            <span class="tech-tag">Lambda</span>
+                            <span class="tech-tag">Azure</span>
+
                         </div>
                     </div>
                     <div class="tech-category">
